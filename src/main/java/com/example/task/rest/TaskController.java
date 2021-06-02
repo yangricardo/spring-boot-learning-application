@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
@@ -20,7 +21,6 @@ public class TaskController {
     }
 
     @GetMapping("")
-    @ResponseBody
     List<Task> index() {
         return repository.findAllByOrderByName();
     }
@@ -31,4 +31,23 @@ public class TaskController {
         Task task = new Task(name);
         return repository.save(task);
     }
+
+    @GetMapping("/{id}")
+    Optional<Task> findById(@PathVariable("id") Long id) {
+        return repository.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    Task update(@PathVariable("id") Long id, @RequestParam("name") Optional<String>  name) {
+        Optional<Task> foundTask = repository.findById(id);
+        if (foundTask.isPresent()) {
+            if(name.isPresent()) {
+                foundTask.get().setName(name.get());
+            }
+            return repository.save(foundTask.get());
+        } else {
+            return null;
+        }
+    }
+
 }
