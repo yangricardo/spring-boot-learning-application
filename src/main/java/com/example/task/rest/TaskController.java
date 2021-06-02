@@ -1,11 +1,9 @@
 package com.example.task.rest;
 
-
 import com.example.task.model.ITaskRepository;
 import com.example.task.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -32,10 +30,10 @@ public class TaskController {
         return repository.save(task);
     }
 
-//    @GetMapping("/{id}")
-//    Optional<Task> findById(@PathVariable("id") Long id) {
-//        return repository.findById(id);
-//    }
+    @GetMapping("/{id}")
+    Optional<Task> findById(@PathVariable("id") Long id) {
+        return repository.findById(id);
+    }
 
     @PutMapping("/{id}")
     Task update(@PathVariable("id") Long id, @RequestParam("name") Optional<String>  name) {
