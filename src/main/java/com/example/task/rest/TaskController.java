@@ -4,9 +4,7 @@ package com.example.task.rest;
 import com.example.task.model.ITaskRepository;
 import com.example.task.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,15 @@ public class TaskController {
     }
 
     @GetMapping("")
+    @ResponseBody
     List<Task> index() {
         return repository.findAllByOrderByName();
+    }
+
+    @PostMapping("")
+    @ResponseBody
+    Task create(@RequestParam("name") String name) {
+        Task task = new Task(name);
+        return repository.save(task);
     }
 }

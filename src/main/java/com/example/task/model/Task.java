@@ -8,8 +8,13 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
+
+    public Task() {}
+
+    public Task(String name) {
+        this.name = name;
+    }
 
     public Long getId(){
         return this.id;
