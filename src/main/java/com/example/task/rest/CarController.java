@@ -5,6 +5,9 @@ import com.example.task.repository.ICarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/cars")
 public class CarController {
@@ -20,5 +23,15 @@ public class CarController {
     @ResponseBody
     Car create(@RequestBody Car car){
         return this.carRepository.save(car);
+    }
+
+    @GetMapping
+    List<Car> index() {
+        return this.carRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    Optional<Car> findById(@PathVariable("id") Long id) {
+        return this.carRepository.findById(id);
     }
 }
