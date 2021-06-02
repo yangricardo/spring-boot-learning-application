@@ -31,7 +31,6 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public Product create(Product product) {
-        product.setCreatedAt(new Date());
         return this.productRepository.save(product);
     }
 
