@@ -1,6 +1,6 @@
 package com.example.task.rest;
 
-import com.example.task.model.ITaskRepository;
+import com.example.task.repository.ITaskRepository;
 import com.example.task.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
