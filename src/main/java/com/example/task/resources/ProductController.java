@@ -2,6 +2,8 @@ package com.example.task.resources;
 
 import com.example.task.models.Product;
 import com.example.task.services.product.IProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/products")
+@Api(value = "Products API")
 public class ProductController {
 
     @Autowired
@@ -34,13 +37,15 @@ public class ProductController {
                 );
     }
 
-    @GetMapping
+    @ApiOperation(value = "Find all products in database")
+    @GetMapping(produces = "application/json")
     @ResponseBody
     ResponseEntity<?> index() {
         return ResponseEntity.ok(this.productService.index());
     }
 
-    @GetMapping("/{id}")
+    @ApiOperation(value = "Find by id")
+    @GetMapping(value = "/{id}")
     @ResponseBody
     ResponseEntity<?> findById(@PathVariable("id") Long id) {
         return this.productService.findById(id)
@@ -48,6 +53,7 @@ public class ProductController {
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @ApiOperation(value = "Create a product with name and quantity")
     @PostMapping
     @ResponseBody
     @ResponseStatus(code=HttpStatus.CREATED)
@@ -60,6 +66,7 @@ public class ProductController {
         }
     }
 
+    @ApiOperation(value = "Update a product")
     @PatchMapping("/{id}")
     @ResponseBody
     ResponseEntity<?> update(@PathVariable("id") Long id, @Valid @RequestBody Product product, Errors errors) {
@@ -72,6 +79,7 @@ public class ProductController {
         }
     }
 
+    @ApiOperation(value = "Delete a product")
     @DeleteMapping("/{id}")
     @ResponseBody
     ResponseEntity<?> delete(@PathVariable("id") Long id) {
