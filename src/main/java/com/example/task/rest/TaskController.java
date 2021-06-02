@@ -32,10 +32,10 @@ public class TaskController {
         return repository.save(task);
     }
 
-    @GetMapping("/{id}")
-    Optional<Task> findById(@PathVariable("id") Long id) {
-        return repository.findById(id);
-    }
+//    @GetMapping("/{id}")
+//    Optional<Task> findById(@PathVariable("id") Long id) {
+//        return repository.findById(id);
+//    }
 
     @PutMapping("/{id}")
     Task update(@PathVariable("id") Long id, @RequestParam("name") Optional<String>  name) {
@@ -50,4 +50,9 @@ public class TaskController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    Long delete(@PathVariable("id") Long id) {
+        repository.deleteById(id);
+        return id;
+    }
 }
