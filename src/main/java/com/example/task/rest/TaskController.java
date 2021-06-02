@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -20,7 +22,7 @@ public class TaskController {
     }
 
     @GetMapping("")
-    Iterable<Task> index() {
-        return repository.findAll();
+    List<Task> index() {
+        return repository.findAllByOrderByName();
     }
 }
