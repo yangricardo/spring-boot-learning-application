@@ -1,6 +1,7 @@
 package com.example.task.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -11,8 +12,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be blank")
+    @Size(min = 4, max = 255)
     private String name;
 
+    @Min(value = 1)
+    @Max(value = 10000)
     private Integer qtd;
 
     private Date createdAt;
