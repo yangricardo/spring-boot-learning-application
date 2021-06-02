@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface ICarRepository extends JpaRepository<Car, Long> {
+//    Car findByName(String name);
 }

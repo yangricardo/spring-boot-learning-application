@@ -9,6 +9,9 @@ public class Car {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
     @Column
     private Integer year;
