@@ -1,6 +1,6 @@
 package com.example.task.repository;
 
-import com.example.task.model.Task;
+import com.example.task.models.Task;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

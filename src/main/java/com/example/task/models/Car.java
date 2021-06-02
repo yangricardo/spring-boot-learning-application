@@ -1,4 +1,4 @@
-package com.example.task.model;
+package com.example.task.models;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package com.example.task.rest;
+package com.example.task.resources;
 
-import com.example.task.model.Car;
+import com.example.task.models.Car;
 import com.example.task.repository.ICarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
-package com.example.task.rest;
+package com.example.task.resources;
 
 import com.example.task.repository.ITaskRepository;
-import com.example.task.model.Task;
+import com.example.task.models.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
