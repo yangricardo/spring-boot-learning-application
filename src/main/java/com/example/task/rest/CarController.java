@@ -28,12 +28,31 @@ public class CarController {
     }
 
     @GetMapping
+    @ResponseStatus(code = HttpStatus.FOUND)
     List<Car> index() {
         return this.carRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.FOUND)
     Optional<Car> findById(@PathVariable("id") Long id) {
         return this.carRepository.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleteById(@PathVariable("id") Long id) {
+        this.carRepository.deleteById(id);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    Optional<Car> updateById(@PathVariable("id") Long id, @RequestBody Car car) {
+       return this.carRepository.findById(id).map(record->{
+           record.setName(car.getName());
+           record.setColor(car.getColor());
+           record.setYear(car.getYear());
+           return this.carRepository.save(record);
+       });
     }
 }
