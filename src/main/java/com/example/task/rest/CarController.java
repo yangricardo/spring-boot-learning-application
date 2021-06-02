@@ -3,6 +3,7 @@ package com.example.task.rest;
 import com.example.task.model.Car;
 import com.example.task.repository.ICarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class CarController {
 
     @PostMapping
     @ResponseBody
+    @ResponseStatus(code = HttpStatus.CREATED)
     Car create(@RequestBody Car car){
         return this.carRepository.save(car);
     }
